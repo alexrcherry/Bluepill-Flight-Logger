@@ -1,0 +1,5 @@
+../Core/Src/Alt.c:10:6:enable_alt	8	static
+../Core/Src/Alt.c:15:6:disable_alt	8	static
+../Core/Src/Alt.c:21:6:read_prom	24	static
+../Core/Src/Alt.c:45:6:read_temp_press	96	static
+../Core/Src/Alt.c:90:6:led	16	static

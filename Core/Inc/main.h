@@ -36,7 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+extern SPI_HandleTypeDef hspi1;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -57,6 +57,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ACC_NCS_Pin GPIO_PIN_1
+#define ACC_NCS_GPIO_Port GPIOA
+#define INT1_Pin GPIO_PIN_2
+#define INT1_GPIO_Port GPIOA
+#define INT1_EXTI_IRQn EXTI2_IRQn
+#define GYR_NCS_Pin GPIO_PIN_4
+#define GYR_NCS_GPIO_Port GPIOA
+#define INT3_Pin GPIO_PIN_7
+#define INT3_GPIO_Port GPIOB
+#define INT3_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -1,0 +1,37 @@
+/*
+ * GPS.c
+ *
+ *  Created on: Jan 14, 2023
+ *      Author: alexr
+ */
+
+//check for $ symbol
+void gps(UART_HandleTypeDef *huart1){
+
+	uint8_t Rx_data[1] = {0};  //  creating a buffer
+	HAL_UART_Receive(&huart1, Rx_data, 1, 300);
+	if (Rx_data[0] == 36){
+		//check if it is a GPGLL NMEA sentence
+		uint8_t NMEA[5] = {0};
+		HAL_UART_Receive(&huart1, NMEA, 5, 300);
+		if (NMEA[4] == 76){
+			//convert from DDmm.mm to standard format
+			//get latitude
+			uint8_t chars[13] = {0};
+			HAL_UART_Receive(&huart1, chars, 13, 300);
+			uint8_t DD_lat = (chars[1]-48)*10+(chars[2]-48);
+			uint32_t mm_lat = ((chars[3]-48)*pow(10, 6)+(chars[4]-48)*pow(10, 5)+(chars[6]-48)*pow(10, 4)+(chars[7]-48)*pow(10, 3)+(chars[8]-48)*pow(10, 2)+(chars[9]-48)*10+(chars[10]-48))/60;
+			//latitude direction
+			uint8_t dir_lat = chars[12];
+			//convert from DDDmm.mm to standard format
+			uint8_t lon[14] = {0};
+			HAL_UART_Receive(&huart1, lon, 14, 300);
+			uint16_t DD_lon = (lon[1]-48)*100+(lon[2]-48)*10+(lon[3]-48);
+			uint32_t mm_lon = ((lon[4]-48)*pow(10, 6)+(lon[5]-48)*pow(10, 5)+(lon[7]-48)*pow(10, 4)+(lon[8]-48)*pow(10, 3)+(lon[9]-48)*pow(10, 2)+(lon[10]-48)*10+(lon[11]-48))/60;
+			uint8_t dir_lon = lon[13];
+
+
+
+		}
+	}
+}
